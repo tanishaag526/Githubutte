@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily News | Stay Updated</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1120;
+            color: white;
+        }
+
+        /* Header */
+
+        header {
+            background: #111a2e;
+            border-bottom: 1px solid #26334a;
+            padding: 20px;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        .date {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Main Container */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px 20px;
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 55px 0;
+        }
+
+        .hero small {
+            color: #a78bfa;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 5vw, 55px);
+            margin: 15px 0;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        /* Search */
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            padding: 15px;
+            background: #111a2e;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #8b5cf6;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .search-btn {
+            background: #8b5cf6;
+            color: white;
+            padding: 0 22px;
+        }
+
+        .search-btn:hover {
+            background: #7040d9;
+        }
+
+        .refresh-btn {
+            background: #26334a;
+            color: white;
+            padding: 0 17px;
+            font-size: 20px;
+        }
+
+        /* Categories */
+
+        .categories {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #26334a;
+        }
+
+        .category {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 11px 18px;
+            border: 1px solid #334155;
+            border-radius: 25px;
+        }
+
+        .category:hover,
+        .category.active {
+            background: #8b5cf6;
+            color: white;
+            border-color: #8b5cf6;
+        }
+
+        /* News Heading */
+
+        .news-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 35px 0 25px;
+            gap: 10px;
+        }
+
+        .news-heading h2 {
+            font-size: 25px;
+        }
+
+        .news-heading span {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* News Cards */
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .news-card {
+            background: #111a2e;
+            border: 1px solid #26334a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #26334a;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-source {
+            color: #a78bfa;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .news-content h3 {
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .news-content p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .read-more {
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            color: white;
+        }
+
+        /* Status */
+
+        .status {
+            text-align: center;
+            padding: 35px 10px;
+            color: #a78bfa;
+            line-height: 1.7;
+        }
+
+        .retry-btn {
+            background: #8b5cf6;
+            color: white;
+            padding: 10px 18px;
+            margin-top: 12px;
+        }
+
+        /* Footer */
+
+        footer {
+            border-top: 1px solid #26334a;
+            text-align: center;
+            padding: 30px 15px;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 60px;
+            line-height: 2;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 850px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .navbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-wrap: wrap;
+            }
+
+            .search-box input {
+                flex-basis: 100%;
+            }
+
+            .search-btn,
+            .refresh-btn {
+                padding: 13px 18px;
+            }
+
+            .hero {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+        <div class="navbar">
+            <div class="logo">DAILY<span>NEWS.</span></div>
+            <div class="date" id="currentDate"></div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Hero -->
+
+        <section class="hero">
+            <small>YOUR DAILY NEWS SOURCE</small>
+
+            <h1>Stay Informed.<br>Stay Ahead.</h1>
+
+            <p>
+                Discover the latest news, trending stories and
+                important updates from around the world.
+            </p>
+        </section>
+
+        <!-- Search -->
+
+        <section class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for news, topics or keywords..."
+            >
+
+            <button class="search-btn" id="searchBtn">
+                Search
+            </button>
+
+            <button class="refresh-btn" id="refreshBtn" title="Refresh">
+                ↻
+            </button>
+
+        </section>
+
+        <!-- Categories -->
+
+        <section class="categories">
+
+            <button class="category active" data-category="top">
+                Top Stories
+            </button>
+
+            <button class="category" data-category="india">
+                India
+            </button>
+
+            <button class="category" data-category="world">
+                World
+            </button>
+
+            <button class="category" data-category="technology">
+                Technology
+            </button>
+
+            <button class="category" data-category="business">
+                Business
+            </button>
+
+            <button class="category" data-category="sports">
+                Sports
+            </button>
+
+            <button class="category" data-category="entertainment">
+                Entertainment
+            </button>
+
+        </section>
+
+        <!-- News Heading -->
+
+        <section class="news-heading">
+
+            <h2 id="sectionTitle">Top Stories</h2>
+
+            <span id="newsCount"></span>
+
+        </section>
+
+        <!-- Loading Message -->
+
+        <div class="status" id="status">
+            Fetching latest news...
+        </div>
+
+        <!-- News Articles -->
+
+        <section class="news-grid" id="newsContainer"></section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 DailyNews. All Rights Reserved.</p>
+        <p>Sample news content for demonstration.</p>
+        <p>Built using HTML, CSS and JavaScript.</p>
+    </footer>
+
+
+    <script>
+        // Fixed demo news articles. These are sample headlines, not live news.
+
+        const newsArticles = [
+            {
+                category: "india",
+                source: "Daily News Demo",
+                date: "11 Nov 2026",
+                title: "India Focuses on Expanding Digital Services",
+                description: "Digital public services continue to be an important area of development, with a focus on easier access and better online experiences.",
+                link: "https://www.digitalindia.gov.in/"
+            },
+            {
+                category: "india",
+                source: "Daily News Demo",
+                date: "11 Nov 2026",
+                title: "Cities Explore New Ways to Improve Public Transport",
+                description: "Urban planners are examining public transport, cleaner mobility and better connections between residential and business areas.",
+                link: "https://mohua.gov.in/"
+            },
+            {
+                category: "india",
+                source: "Daily News Demo",
+                date: "10 Nov 2026",
+                title: "Education Technology Brings More Learning Resources Online",
+                description: "Online learning platforms and digital resources are helping students access lessons, practice material and educational support.",
+                link: "https://www.education.gov.in/"
+            },
+            {
+                category: "world",
+                source: "Daily News Demo",
+                date: "11 Nov 2026",
+                title: "Countries Discuss Cooperation on Climate Action",
+                description: "International discussions continue around clean energy, climate resilience and ways to reduce environmental risks.",
+                link: "https://www.un.org/en/climatechange"
+            },
+            {
+                category: "world",
+                source: "Daily News Demo",
+                date: "10 Nov 2026",
+                title: "Global Health Groups Highlight Disease Prevention",
+                description: "Public health organisations emphasise prevention, reliable information and access to essential healthcare services.",
+                link: "https://www.who.int/"
+            },
+            {
+                category: "technology",
+                source: "Daily News Demo",
+                date: "11 Nov 2026",
+                title: "Artificial Intelligence Tools Are Changing Everyday Work",
+                description: "AI tools can help people draft, organise information and automate routine tasks, while raising questions about accuracy and privacy.",
+                link: "https://www.nist.gov/artificial-intelligence"
+            },
+            {
+                category: "technology",
+                source: "Daily News Demo",
+                date: "10 Nov 2026",
+                title: "Cybersecurity Awareness Remains Important for Internet Users",
+                description: "Strong passwords, software updates and caution with suspicious links are basic steps that can improve online safety.",
+                link: "https://www.cisa.gov/secure-our-world"
+            },
+            {
+                category: "technology",
+                source: "Daily News Demo",
+                date: "9 Nov 2026",
+                title: "Developers Build More Accessible Websites",
+                description: "Accessible design helps people navigate websites using keyboards, screen readers and different devices.",
+                link: "https://www.w3.org/WAI/"
+            },
+            {
+                category: "business",
+                source: "Daily News Demo",
+                date: "11 Nov 2026",
+                title: "Small Businesses Explore Digital Payments",
+                description: "Digital payment options can make transactions more convenient, while businesses must also consider fees and security.",
+                link: "https://www.npci.org.in/"
+            },
+            {
+                category: "business",
+                source: "Daily News Demo",
+                date: "10 Nov 2026",
+                title: "Startups Pay Attention to Sustainable Business Models",
+                description: "New businesses are looking at customer needs, operating costs and long-term sustainability when planning growth.",
+                link: "https://www.startupindia.gov.in/"
+            },
+            {
+                category: "sports",
+                source: "Daily News Demo",
+                date: "11 Nov 2026",
+                title: "Athletes Emphasise Fitness and Recovery in Training",
+                description: "Training programmes often balance skill development with strength, recovery, nutrition and injury prevention.",
+                link: "https://olympics.com/"
+            },
+            {
+                category: "sports",
+                source: "Daily News Demo",
+                date: "10 Nov 2026",
+                title: "Grassroots Sports Programmes Encourage Young Players",
+                description: "Community sports programmes give young people opportunities to learn teamwork, discipline and physical fitness.",
+                link: "https://yas.nic.in/"
+            },
+            {
+                category: "entertainment",
+                source: "Daily News Demo",
+                date: "11 Nov 2026",
+                title: "Independent Filmmakers Find New Digital Audiences",
+                description: "Online platforms give independent creators additional ways to share films, short videos and original storytelling.",
+                link: "https://www.filmfestivalindia.com/"
+            },
+            {
+                category: "entertainment",
+                source: "Daily News Demo",
+                date: "10 Nov 2026",
+                title: "Music and Culture Festivals Bring Communities Together",
+                description: "Cultural events provide a platform for artists, performers and local communities to share creative work.",
+                link: "https://www.sangeetnatak.gov.in/"
+            }
+        ];
+
+        const newsContainer = document.getElementById("newsContainer");
+        const statusMessage = document.getElementById("status");
+        const searchInput = document.getElementById("searchInput");
+        const sectionTitle = document.getElementById("sectionTitle");
+        const newsCount = document.getElementById("newsCount");
+
+        document.getElementById("currentDate").textContent =
+            new Date().toLocaleDateString("en-IN", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+
+        const categoryNames = {
+            top: "Top Stories",
+            india: "India",
+            world: "World",
+            technology: "Technology",
+            business: "Business",
+            sports: "Sports",
+            entertainment: "Entertainment"
+        };
+
+        let currentCategory = "top";
+
+        function displayNews(articles) {
+            newsContainer.innerHTML = "";
+            newsCount.textContent = articles.length + " Articles";
+
+            if (articles.length === 0) {
+                statusMessage.style.display = "block";
+                statusMessage.textContent = "No matching demo articles found. Try another search.";
+                return;
+            }
+
+            statusMessage.style.display = "none";
+
+            articles.forEach(article => {
+                const card = document.createElement("article");
+                card.className = "news-card";
+
+                const content = document.createElement("div");
+                content.className = "news-content";
+
+                const source = document.createElement("div");
+                source.className = "news-source";
+                source.textContent = article.source + " • " + article.date;
+
+                const title = document.createElement("h3");
+                title.textContent = article.title;
+
+                const description = document.createElement("p");
+                description.textContent = article.description;
+
+                const link = document.createElement("a");
+                link.className = "read-more";
+                link.textContent = "Read More →";
+                link.href = article.link;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+
+                content.appendChild(source);
+                content.appendChild(title);
+                content.appendChild(description);
+                content.appendChild(link);
+                card.appendChild(content);
+                newsContainer.appendChild(card);
+            });
+        }
+
+        function selectCategory(category) {
+            currentCategory = category;
+            searchInput.value = "";
+
+            document.querySelectorAll(".category").forEach(button => {
+                button.classList.toggle(
+                    "active",
+                    button.dataset.category === category
+                );
+            });
+
+            sectionTitle.textContent = categoryNames[category];
+
+            const articles = category === "top"
+                ? newsArticles
+                : newsArticles.filter(article => article.category === category);
+
+            displayNews(articles);
+        }
+
+        function searchNews() {
+            const query = searchInput.value.trim().toLowerCase();
+
+            if (!query) {
+                selectCategory(currentCategory);
+                return;
+            }
+
+            document.querySelectorAll(".category").forEach(button => {
+                button.classList.remove("active");
+            });
+
+            sectionTitle.textContent = 'Search: "' + searchInput.value.trim() + '"';
+
+            const results = newsArticles.filter(article =>
+                article.title.toLowerCase().includes(query) ||
+                article.description.toLowerCase().includes(query) ||
+                article.category.toLowerCase().includes(query)
+            );
+
+            displayNews(results);
+        }
+
+        document.querySelectorAll(".category").forEach(button => {
+            button.addEventListener("click", function () {
+                selectCategory(this.dataset.category);
+            });
+        });
+
+        document.getElementById("searchBtn").addEventListener("click", searchNews);
+
+        searchInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                searchNews();
+            }
+        });
+
+        document.getElementById("refreshBtn").addEventListener("click", function () {
+            if (searchInput.value.trim()) {
+                searchNews();
+            } else {
+                selectCategory(currentCategory);
+            }
+        });
+
+        // Load demo articles immediately. No API or internet request is needed.
+        selectCategory("top");
+    </script>
+
+</body>
+</html>
